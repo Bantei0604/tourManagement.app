@@ -6,20 +6,19 @@ import Register from "../pages/Register";
 import SearchResultList from "../pages/SearchResultList";
 import TourDetails from "../pages/TourDetails";
 import Tours from "../pages/Tours";
-const Routers = () => {
+
+const AppRoutes = () => {
   return (
-    <>
-      <Routers>
-        <Route path="/" element={<Navigate to="/home" />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/tour/search" element={<SearchResultList />} />
-        <Route path="/tour " element={<Tour />} />
-        <Route path="/tour/:id" element={<TourDetails />} />
-      </Routers>
-    </>
+    <Routes>
+      <Route path="/" element={<Navigate to="/home" />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/tour/search" element={<SearchResultList />} />
+      <Route path="/tours" element={<Tours />} />
+      <Route path="/tour/:id" element={<TourDetails />} />
+    </Routes>
   );
 };
 
-export default Routers;
+export default AppRoutes;
