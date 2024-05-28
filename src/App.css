@@ -2,12 +2,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 :root {
-  --primary-color: #ff7e01;
-  --secondary-color: #faa935;
-  --heading-color: #0b2727;
-  --text-color: #6e7074;
   --font-name: "Montserrat", sans-serif;
   --subtitle-font-name: "Island Moments", cursive;
+
+  --primary-color: #55c57a;
+  --primary-color-light: #7ed56f;
+  --primary-color-dark: #28b485;
+
+  --secondary-color: #ffb900;
+  --secondary-color-dark: #ff7730;
+
+  --heading-color: #2998ff;
+  --heading-color: #5643fa;
+
+  --text-color: #f7f7f7;
+
+  --color-grey-dark: #777;
+  --color-grey-dark-2: #999;
+  --color-grey-dark-3: #333;
+
+  --color-white: #fff;
+  --color-black: #000;
 }
 
 * {
@@ -42,7 +57,7 @@ ul {
 }
 
 .primary__btn {
-  background: var(--secondary-color) !important;
+  background: var(--primary-color) !important;
   border: none !important;
   border-radius: 50px !important;
   padding: 0.4rem 1.5rem !important;
@@ -66,7 +81,7 @@ ul {
 .secondary__btn a {
   text-decoration: none;
   font-size: 1.1rem;
-  color: var(--heading-color);
+  color: var(--primary-color);
 }
 
 .secondary__btn a:hover {
@@ -74,7 +89,7 @@ ul {
 }
 
 .section__subtitle {
-  background: var(--secondary-color);
+  background: var(--primary-color-light);
   font-family: var(--subtitle-font-name);
   width: max-content;
   padding: 0px 0.5rem;
