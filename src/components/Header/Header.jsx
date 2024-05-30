@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Button } from "reactstrap";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import "./header.css";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { db, auth } from "../../firebaseConfig";
 
 const nav__links = [
   {
@@ -20,6 +22,46 @@ const nav__links = [
 ];
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+  const [profilePic, setProfilePic] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+      if (currentUser) {
+        setProfilePic(currentUser.photoURL);
+      } else {
+        setProfilePic(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleGoogle = async () => {
+    if (user) {
+      await signOut(auth);
+      navigate("/home");
+      setProfilePic(null);
+    } else {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      navigate("/home");
+      alert("Welcome to Google");
+    }
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
+  const handleLogout = async () => {
+    await signOut(auth);
+    navigate("/home");
+  };
+
   return (
     <>
       <header className="header">
@@ -47,12 +89,34 @@ const Header = () => {
               </div>
               <div className="nav__right d-flex align-items-center gap-4">
                 <div className="nav__btns d-flex align-items-center gap-4">
-                  <Button className="btn primary__btn">
-                    <Link to="/login">Login</Link>
-                  </Button>
+                  {user ? (
+                    <div className="profile-dropdown">
+                      <img
+                        src={profilePic}
+                        alt="Profile"
+                        style={{
+                          height: "40px",
+                          borderRadius: "50%",
+                          cursor: "pointer",
+                        }}
+                        onClick={toggleDropdown}
+                      />
+                      {dropdownOpen && (
+                        <div className="dropdown-menu">
+                          <button onClick={handleLogout}>Log Out</button>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <Button className="btn primary__btn">
+                      <Link to="/login" onClick={handleGoogle}>
+                        Login
+                      </Link>
+                    </Button>
+                  )}
                 </div>
                 <span className="mobile__menu">
-                  <i class="ri-menu-5-fill">Meghalaya Tours</i>
+                  <i className="ri-menu-5-fill">Meghalaya Tours</i>
                 </span>
               </div>
             </div>
