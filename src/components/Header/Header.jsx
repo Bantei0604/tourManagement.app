@@ -24,7 +24,6 @@ const nav__links = [
 const Header = () => {
   const [user, setUser] = useState(null);
   const [profilePic, setProfilePic] = useState(null);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -49,17 +48,13 @@ const Header = () => {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       navigate("/home");
-      alert("Welcome to Google");
     }
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen);
   };
 
   const handleLogout = async () => {
     await signOut(auth);
     navigate("/home");
+    setProfilePic(null);
   };
 
   return (
@@ -89,30 +84,30 @@ const Header = () => {
               </div>
               <div className="nav__right d-flex align-items-center gap-4">
                 <div className="nav__btns d-flex align-items-center gap-4">
-                  {user ? (
-                    <div className="profile-dropdown">
-                      <img
-                        src={profilePic}
-                        alt="Profile"
-                        style={{
-                          height: "40px",
-                          borderRadius: "50%",
-                          cursor: "pointer",
-                        }}
-                        onClick={toggleDropdown}
-                      />
-                      {dropdownOpen && (
-                        <div className="dropdown-menu">
-                          <button onClick={handleLogout}>Log Out</button>
-                        </div>
-                      )}
-                    </div>
-                  ) : (
-                    <Button className="btn primary__btn">
-                      <Link to="/login" onClick={handleGoogle}>
-                        Login
-                      </Link>
+                  {!user ? (
+                    <Button className="btn primary__btn" onClick={handleGoogle}>
+                      Login
                     </Button>
+                  ) : (
+                    <>
+                      <Button
+                        className="btn primary__btn"
+                        onClick={handleLogout}
+                      >
+                        Sign Out
+                      </Button>
+                      {profilePic && (
+                        <img
+                          src={profilePic}
+                          alt="Profile"
+                          style={{
+                            height: "40px",
+                            borderRadius: "50%",
+                            cursor: "pointer",
+                          }}
+                        />
+                      )}
+                    </>
                   )}
                 </div>
                 <span className="mobile__menu">
