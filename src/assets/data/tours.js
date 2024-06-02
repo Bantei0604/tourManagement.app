@@ -9,10 +9,10 @@ import tourImg07 from "../images/tour-img07.jpg";
 const tours = [
   {
     id: "01",
-    title: "Westminister Bridge",
-    city: "London",
-    distance: 300,
-    price: 99,
+    title: " Living Root Bridge",
+    city: "Nongriat",
+    distance: 60,
+    price: 2500,
     maxGroupSize: 10,
     desc: "this is the description",
     reviews: [
@@ -27,10 +27,10 @@ const tours = [
   },
   {
     id: "02",
-    title: "Bali, Indonesia",
-    city: "Indonesia",
-    distance: 400,
-    price: 99,
+    title: "Nohron Waterfall",
+    city: "Markham",
+    distance: 60,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -45,10 +45,10 @@ const tours = [
   },
   {
     id: "03",
-    title: "Snowy Mountains, Thailand",
-    city: "Thailand",
-    distance: 500,
-    price: 99,
+    title: "Sohbar",
+    city: "Shillong",
+    distance: 80,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -63,10 +63,10 @@ const tours = [
   },
   {
     id: "04",
-    title: "Beautiful Sunrise, Thailand",
-    city: "Thailand",
-    distance: 500,
-    price: 99,
+    title: "Markham Valleys",
+    city: "Khliehasem",
+    distance: 70,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -81,10 +81,10 @@ const tours = [
   },
   {
     id: "05",
-    title: "Nusa Pendia Bali, Indonesia",
-    city: "Indonesia",
-    distance: 500,
-    price: 99,
+    title: "Bangladesh View",
+    city: "Mot Palong",
+    distance: 60,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -99,10 +99,10 @@ const tours = [
   },
   {
     id: "06",
-    title: "Cherry Blossoms Spring",
-    city: "Japan",
+    title: "Living Root Bridge",
+    city: "Mawkyrnot",
     distance: 500,
-    price: 99,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -117,10 +117,10 @@ const tours = [
   },
   {
     id: "07",
-    title: "Holmen Lofoten",
-    city: "France",
-    distance: 500,
-    price: 99,
+    title: "Canyon",
+    city: "Nohron",
+    distance: 80,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [
@@ -135,10 +135,10 @@ const tours = [
   },
   {
     id: "08",
-    title: "Snowy Mountains, Thailand",
-    city: "Thailand",
-    distance: 500,
-    price: 99,
+    title: "Sohbar",
+    city: "Shillong",
+    distance: 80,
+    price: 2500,
     maxGroupSize: 8,
     desc: "this is the description",
     reviews: [

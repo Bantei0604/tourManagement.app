@@ -1,40 +1,24 @@
 import React, { useState } from "react";
 import "../styles/home.css";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from "reactstrap";
+import { Container, Row, Col, Button } from "reactstrap";
 import heroVideo02 from "../assets/images/hero-video02.mp4";
 import heroVideo03 from "../assets/images/hero-video03.mp4";
 import heroVideo from "../assets/images/hero-video.mp4";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
 import RegisterForm from "./RegisterForm";
+import Packages from "../components/Packages/Packages";
 
 const Home = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [recipient, setRecipient] = useState("");
+  const [show, setShow] = useState(false);
 
-  const toggleForm = () => {
-    setShowForm(!showForm);
+  const showModal = () => {
+    setShow(true);
   };
 
-  const toggleModal = () => {
-    setModal(!modal);
+  const hideModal = () => {
+    setShow(false);
   };
-
-  const handleOpenModal = (recipient) => {
-    setRecipient(recipient);
-    toggleModal();
-  };
-
   return (
     <>
       <Container>
@@ -73,72 +57,22 @@ const Home = () => {
           </Col>
         </Row>
         <SearchBar />
-        <Button
-          color="btn primary__btn mt-4"
-          onClick={() => handleOpenModal("@mdo")}
-        >
-          Register
+        <Button className="btn btn-primary" onClick={showModal}>
+          Open Modal
         </Button>
-
-        <Modal isOpen={modal} toggle={toggleModal}>
-          <ModalHeader toggle={toggleModal}>
-            New message to {recipient}
-          </ModalHeader>
-          <ModalBody>
-            <form>
-              <div className="mb-3">
-                <label htmlFor="recipient-name" className="col-form-label">
-                  Phone No:
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="recipient-name"
-                  value={recipient}
-                  readOnly
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="recipient-name" className="col-form-label">
-                  Number of people:
-                </label>
-                <input
-                  type="number"
-                  className="form-control"
-                  id="recipient-name"
-                  value={recipient}
-                  readOnly
-                />
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="recipient-name" className="col-form-label">
-                  Recipient:
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="recipient-name"
-                  value={recipient}
-                  readOnly
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="message-text" className="col-form-label">
-                  Message:
-                </label>
-                <textarea className="form-control" id="message-text"></textarea>
-              </div>
-            </form>
-          </ModalBody>
-          <ModalFooter>
-            <Button color="secondary" onClick={toggleModal}>
-              Close
-            </Button>
-            <Button color="primary">Send message</Button>
-          </ModalFooter>
-        </Modal>
       </Container>
+      {/* Section for packages  */}
+      <section>
+        <Container>
+          <Row>
+            <Col lg="12" className="mb-5">
+              <Subtitle subtitle={"Packages"} />
+              <h2 className="featured__tour-title">Our Packages</h2>
+            </Col>
+            <Packages />
+          </Row>
+        </Container>
+      </section>
     </>
   );
 };

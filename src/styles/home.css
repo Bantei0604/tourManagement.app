@@ -65,3 +65,24 @@
   text-decoration: none;
   cursor: pointer;
 }
+/* home.css */
+
+/* Style the modal */
+.form-modal {
+  background-color: red;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+/* Style the modal header */
+.form-modal-header {
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Packages */
+.featured__tour-title {
+  font-size: 2.3rem;
+  font-weight: 500;
+}
