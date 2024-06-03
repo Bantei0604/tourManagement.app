@@ -1,132 +1,146 @@
 [
   {
-    "title": "Westminister Bridge",
-    "city": "London",
-    "address": "Somewhere in London",
-    "distance": 300,
-    "price": 99,
+    "id": "01",
+    "title": "Living Root Bridge",
+    "city": "Nongriat",
+    "distance": 60,
+    "price": 2500,
     "maxGroupSize": 10,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img01.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg01",
     "featured": true
   },
   {
-    "title": "Bali, Indonesia",
-    "city": "Bali",
-    "address": "Somewhere in Indonesia",
-    "distance": 400,
-    "price": 99,
+    "id": "02",
+    "title": "Nohron Waterfall",
+    "city": "Markham",
+    "distance": 60,
+    "price": 2500,
     "maxGroupSize": 8,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img02.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg02",
     "featured": true
   },
   {
-    "title": "Snowy Mountains, Thailand",
-    "city": "Bangkok",
-    "address": "Somewhere in Thailand",
-    "distance": 500,
-    "price": 99,
+    "id": "03",
+    "title": "Sohbar",
+    "city": "Shillong",
+    "distance": 80,
+    "price": 2500,
     "maxGroupSize": 8,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img03.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg03",
     "featured": true
   },
   {
-    "title": "Beautiful Sunrise, Thailand",
-    "city": "Phuket",
-    "address": "Somewhere in Thailand",
-    "distance": 500,
-    "price": 99,
+    "id": "04",
+    "title": "Markham Valleys",
+    "city": "Khliehasem",
+    "distance": 70,
+    "price": 2500,
     "maxGroupSize": 8,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img04.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg04",
     "featured": true
   },
   {
-    "title": "Nusa Pendia Bali, Indonesia",
-    "city": "Bali",
-    "address": "Somewhere in Indonesia",
-    "distance": 500,
-    "price": 99,
+    "id": "05",
+    "title": "Bangladesh View",
+    "city": "Mot Palong",
+    "distance": 60,
+    "price": 2500,
     "maxGroupSize": 8,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img05.jpg",
-    "featured": true
-  },
-  {
-    "title": "Cherry Blossoms Spring",
-    "city": "Tokyo",
-    "address": "Somewhere in Japan",
-    "distance": 500,
-    "price": 99,
-    "maxGroupSize": 8,
-    "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img06.jpg",
-    "featured": true
-  },
-  {
-    "title": "Holmen Lofoten, France",
-    "city": "Paris",
-    "address": "Somewhere in France",
-    "distance": 500,
-    "price": 99,
-    "maxGroupSize": 8,
-    "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img07.jpg",
-    "featured": true
-  },
-  {
-    "title": "Snowy Mountains, Thailand",
-    "city": "Bangkok",
-    "address": "Somewhere in Thailand",
-    "distance": 500,
-    "price": 99,
-    "maxGroupSize": 8,
-    "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img03.jpg",
-    "featured": true
-  },
-  {
-    "title": "Jaflong, Sylhet",
-    "city": "Sylhet",
-    "address": "Somewhere in Sylhet",
-    "distance": 100,
-    "price": 99,
-    "maxGroupSize": 5,
-    "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img08.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg05",
     "featured": false
   },
   {
-    "title": "Cox's Bazar Sea Beach",
-    "city": "Chittagong",
-    "address": "Somewhere in Chittagong",
+    "id": "06",
+    "title": "Living Root Bridge",
+    "city": "Mawkyrnot",
     "distance": 500,
-    "price": 99,
+    "price": 2500,
     "maxGroupSize": 8,
     "desc": "this is the description",
-    "reviews": [],
-
-    "photo": "/tour-images/tour-img09.jpg",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg06",
+    "featured": false
+  },
+  {
+    "id": "07",
+    "title": "Canyon",
+    "city": "Nohron",
+    "distance": 80,
+    "price": 2500,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg07",
+    "featured": false
+  },
+  {
+    "id": "08",
+    "title": "Sohbar",
+    "city": "Shillong",
+    "distance": 80,
+    "price": 2500,
+    "maxGroupSize": 8,
+    "desc": "this is the description",
+    "reviews": [
+      {
+        "name": "jhon doe",
+        "rating": 4.6
+      }
+    ],
+    "avgRating": 4.5,
+    "photo": "tourImg03",
     "featured": false
   }
 ]

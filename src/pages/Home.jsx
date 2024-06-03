@@ -6,19 +6,13 @@ import heroVideo03 from "../assets/images/hero-video03.mp4";
 import heroVideo from "../assets/images/hero-video.mp4";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
-import RegisterForm from "./RegisterForm";
+import LoginForm from "./Login";
 import Packages from "../components/Packages/Packages";
 
 const Home = () => {
-  const [show, setShow] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
-  const showModal = () => {
-    setShow(true);
-  };
-
-  const hideModal = () => {
-    setShow(false);
-  };
+  const toggleLoginModal = () => setIsLoginOpen(!isLoginOpen);
   return (
     <>
       <Container>
@@ -57,9 +51,10 @@ const Home = () => {
           </Col>
         </Row>
         <SearchBar />
-        <Button className="btn btn-primary" onClick={showModal}>
-          Open Modal
+        <Button className="btn primary__btn mt-4" onClick={toggleLoginModal}>
+          Start Booking
         </Button>
+        <LoginForm isOpen={isLoginOpen} toggle={toggleLoginModal} />
       </Container>
       {/* Section for packages  */}
       <section>
