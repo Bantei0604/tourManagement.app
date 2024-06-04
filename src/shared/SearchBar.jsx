@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./search-bar.css";
 import { Col, Form, FormGroup } from "reactstrap";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
+  const [search, setSearch] = useState("");
+
+  const onChangeListener = (e) => {
+    setSearch(e.target.value);
+  };
+
   return (
     <>
       <Col lg="12">
@@ -14,11 +20,11 @@ const SearchBar = () => {
               </span>
               <div>
                 <h6>Location</h6>
-                <input type="text" placeholder="Where are you going?" />
+                <input type="text" placeholder="Where are you going?" onChange={onChangeListener} />
               </div>
             </FormGroup>
 
-            <span className="search__icon" type="submit">
+            <span className="search__icon" type="submit" onClick={() => onSearch(search)}>
               <i class="ri-search-eye-line"></i>
             </span>
           </Form>

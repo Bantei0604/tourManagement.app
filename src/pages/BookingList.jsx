@@ -1,14 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  getFirestore,
-  collection,
-  getDocs,
-  query,
-  where,
-  limit,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { getFirestore, collection, getDocs, query, where, limit, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig"; // Adjust the path as necessary
 import "./booking-list.css";
 import { onAuthStateChanged } from "firebase/auth";
@@ -25,11 +16,7 @@ const BookingList = ({ userId }) => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           const userId = user.uid;
-          const q = query(
-            bookingsCollection,
-            where("userId", "==", userId),
-            limit(2)
-          );
+          const q = query(bookingsCollection, where("userId", "==", userId), limit(2));
           const bookingSnapshot = await getDocs(q);
           const bookingList = bookingSnapshot.docs.map((doc) => ({
             ...doc.data(),
@@ -46,15 +33,11 @@ const BookingList = ({ userId }) => {
   const cancelBooking = async (id) => {
     const db = getFirestore();
     const bookingref = doc(db, "bookings", id);
-
     try {
-      await updateDoc(bookingref, { isActive: false, cancelDate: new Date() });
+      const updatedBooking = { isActive: false, cancelDate: new Date() };
+      await updateDoc(bookingref, updatedBooking);
       setBookings((prevBookings) =>
-        prevBookings.map((booking) =>
-          booking.id === id
-            ? { ...booking, isActive: false, cancelDate: new DataView() }
-            : booking
-        )
+        prevBookings.map((booking) => (booking.id === id ? { ...booking, ...updatedBooking } : booking))
       );
     } catch (error) {
       console.log("Error Handling booking", error);
@@ -67,6 +50,7 @@ const BookingList = ({ userId }) => {
       <table>
         <thead>
           <tr>
+            <th>Tour Name</th>
             <th>No Of People</th>
             <th>Tour Start Date</th>
             <th>Action</th>
@@ -75,15 +59,17 @@ const BookingList = ({ userId }) => {
         <tbody>
           {bookings.map((booking) => (
             <tr key={booking.id}>
+              <td>{booking.tourTitle}</td>
               <td>{booking.numberOfPeople}</td>
               <td>{booking.startDate}</td>
               <td>
-                <button
-                  onClick={() => cancelBooking(booking.id)}
-                  className="action-button"
-                >
-                  Cancel
-                </button>
+                {booking.isActive ? (
+                  <button onClick={() => cancelBooking(booking.id)} className="action-button">
+                    Cancel
+                  </button>
+                ) : (
+                  "Cancelled"
+                )}
               </td>
             </tr>
           ))}

@@ -2,26 +2,31 @@ import React, { useEffect, useState } from "react";
 import TourCards from "../../shared/TourCards";
 import tourData from "../../assets/data/tours";
 import { Col } from "reactstrap";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
-const Packages = () => {
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
+
+const Packages = ({ toggleLoginModal, search }) => {
   const [packages, setPackages] = useState([]);
 
   useEffect(() => {
     const fetchPackages = async () => {
       const db = getFirestore();
       const packagesCollection = collection(db, "packages");
-      const packagesSnapshot = await getDocs(packagesCollection);
+      const startAtSearch = where("city", ">=", search);
+      const endAtSearch = where("city", "<", search + "\uf8ff");
+      const q = query(packagesCollection, startAtSearch, endAtSearch);
+      const packagesSnapshot = await getDocs(q);
       const packageList = packagesSnapshot.docs.map((doc) => doc.data());
+      console.log("packageList", packageList);
       setPackages(packageList);
     };
 
     fetchPackages();
-  }, []);
+  }, [search]);
   return (
     <>
-      {tourData?.map((tour) => (
+      {packages?.map((tour) => (
         <Col lg="3" className="mb-4 " key={tour.id}>
-          <TourCards tour={tour} />
+          <TourCards tour={tour} toggleLoginModal={toggleLoginModal} />
         </Col>
       ))}
     </>

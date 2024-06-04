@@ -2,8 +2,9 @@ import React from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./tour-card.css";
+import { Button } from "reactstrap";
 
-const TourCards = ({ tour }) => {
+const TourCards = ({ tour, toggleLoginModal }) => {
   const { id, title, city, photo, price, featured, avgRating, reviews } = tour;
   return (
     <div className="tour__card">
@@ -30,9 +31,8 @@ const TourCards = ({ tour }) => {
             <h5>
               &#8377; {price} <span>/per person</span>
             </h5>
-            <button className="btn booking__btn">
-              <Link to={`/tours/${id}`}>Book Now</Link>
-            </button>
+
+            <Button onClick={() => toggleLoginModal(id, title)}>Book Now</Button>
           </div>
         </CardBody>
       </Card>

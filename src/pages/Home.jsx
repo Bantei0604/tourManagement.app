@@ -11,8 +11,20 @@ import Packages from "../components/Packages/Packages";
 
 const Home = () => {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [tourId, setTourId] = useState("");
+  const [tourTitle, setTourTitle] = useState("");
+  const [search, setSearch] = useState("");
 
-  const toggleLoginModal = () => setIsLoginOpen(!isLoginOpen);
+  const toggleLoginModal = (tourId, tourTitle) => {
+    setTourId(tourId);
+    setTourTitle(tourTitle);
+    setIsLoginOpen(!isLoginOpen);
+  };
+
+  const onSearch = (searchTerm) => {
+    console.log("searchTerm", searchTerm);
+    setSearch(searchTerm);
+  };
   return (
     <>
       <Container>
@@ -23,14 +35,12 @@ const Home = () => {
                 <Subtitle subtitle={"Meghalaya"} />
               </div>
               <h1>
-                Travelling opens the door for creating{" "}
-                <span className="highlight">memories</span>
+                Travelling opens the door for creating <span className="highlight">memories</span>
               </h1>
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Maiores sapiente quos consequatur tempora laudantium? Magni ea
-                fuga quam sunt voluptatum, nulla maxime, ullam sequi dolores
-                pariatur vel, qui at fugiat!
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores sapiente quos consequatur tempora
+                laudantium? Magni ea fuga quam sunt voluptatum, nulla maxime, ullam sequi dolores pariatur vel, qui at
+                fugiat!
               </p>
             </div>
           </Col>
@@ -50,11 +60,11 @@ const Home = () => {
             </div>
           </Col>
         </Row>
-        <SearchBar />
-        <Button className="btn primary__btn mt-4" onClick={toggleLoginModal}>
+        <SearchBar onSearch={onSearch} />
+        {/* <Button className="btn primary__btn mt-4" onClick={toggleLoginModal}>
           Start Booking
-        </Button>
-        <LoginForm isOpen={isLoginOpen} toggle={toggleLoginModal} />
+        </Button> */}
+        <LoginForm isOpen={isLoginOpen} toggle={toggleLoginModal} tourId={tourId} tourTitle={tourTitle} />
       </Container>
       {/* Section for packages  */}
       <section>
@@ -64,7 +74,7 @@ const Home = () => {
               <Subtitle subtitle={"Packages"} />
               <h2 className="featured__tour-title">Our Packages</h2>
             </Col>
-            <Packages />
+            <Packages toggleLoginModal={toggleLoginModal} search={search} />
           </Row>
         </Container>
       </section>

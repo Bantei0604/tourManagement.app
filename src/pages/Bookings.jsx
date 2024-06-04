@@ -1,22 +1,11 @@
 // src/components/BookingForm.js
 import React, { useState } from "react";
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Col,
-  Row,
-} from "reactstrap";
+import { Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input, Col, Row } from "reactstrap";
 import { auth } from "../firebaseConfig";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 import "../styles/home.css";
 
-const BookingForm = ({ isOpen, toggle }) => {
+const BookingForm = ({ isOpen, toggle, tourId, tourTitle }) => {
   const [name, setName] = useState("");
   const [numberOfPeople, setNumberOfPeople] = useState("");
   const [phone, setPhone] = useState("");
@@ -39,7 +28,7 @@ const BookingForm = ({ isOpen, toggle }) => {
     };
 
     try {
-      const docRef = await addDoc(bookingsCollection, booking);
+      const docRef = await addDoc(bookingsCollection, { ...booking, tourId, tourTitle });
       console.log("Booking added with ID: ", docRef.id);
     } catch (error) {
       console.log("Error handling booking", error);
@@ -48,25 +37,17 @@ const BookingForm = ({ isOpen, toggle }) => {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      toggle={toggle}
-      className="booking-modal custom-width"
-    >
-      <ModalHeader toggle={toggle}>Book a Tour</ModalHeader>
+    <Modal isOpen={isOpen} toggle={toggle} className="booking-modal custom-width">
+      <ModalHeader toggle={toggle}>
+        Booking <h1>{tourTitle}</h1>
+      </ModalHeader>
       <ModalBody>
         <Form onSubmit={handleSubmit}>
           <Row form>
             <Col md={6}>
               <FormGroup>
                 <Label for="name">Name</Label>
-                <Input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                />
+                <Input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
               </FormGroup>
             </Col>
             <Col md={6}>
@@ -86,13 +67,7 @@ const BookingForm = ({ isOpen, toggle }) => {
             <Col md={6}>
               <FormGroup>
                 <Label for="phone">Phone</Label>
-                <Input
-                  type="tel"
-                  id="phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  required
-                />
+                <Input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
               </FormGroup>
             </Col>
             <Col md={6}>
@@ -111,12 +86,7 @@ const BookingForm = ({ isOpen, toggle }) => {
           <Row form>
             <FormGroup>
               <Label for="notes">Additional Notes</Label>
-              <Input
-                type="textarea"
-                id="notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-              />
+              <Input type="textarea" id="notes" value={notes} onChange={(e) => setNotes(e.target.value)} />
             </FormGroup>
           </Row>
           <Button type="submit" color="primary" className="mt-3">
