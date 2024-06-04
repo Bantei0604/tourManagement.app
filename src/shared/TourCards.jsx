@@ -1,10 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import "./tour-card.css";
 import { Button } from "reactstrap";
+import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { db, auth } from "../firebaseConfig";
 
 const TourCards = ({ tour, toggleLoginModal }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
+  };
   const { id, title, city, photo, price, featured, avgRating, reviews } = tour;
   return (
     <div className="tour__card">
@@ -31,8 +47,15 @@ const TourCards = ({ tour, toggleLoginModal }) => {
             <h5>
               &#8377; {price} <span>/per person</span>
             </h5>
-
-            <Button onClick={() => toggleLoginModal(id, title)}>Book Now</Button>
+            {user ? (
+              <Button className="btn primary__btn" onClick={() => toggleLoginModal(id, title)}>
+                Book Now
+              </Button>
+            ) : (
+              <Button color="success" onClick={handleGoogle}>
+                Login To Book
+              </Button>
+            )}
           </div>
         </CardBody>
       </Card>

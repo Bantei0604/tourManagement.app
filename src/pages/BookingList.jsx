@@ -7,6 +7,7 @@ import { auth } from "../firebaseConfig";
 
 const BookingList = ({ userId }) => {
   const [bookings, setBookings] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const fetchBookings = async () => {
@@ -15,6 +16,7 @@ const BookingList = ({ userId }) => {
 
       onAuthStateChanged(auth, async (user) => {
         if (user) {
+          setUser(user);
           const userId = user.uid;
           const q = query(bookingsCollection, where("userId", "==", userId), limit(2));
           const bookingSnapshot = await getDocs(q);
@@ -46,7 +48,9 @@ const BookingList = ({ userId }) => {
 
   return (
     <div className="booking-list">
-      <h2>Booking List</h2>
+      <h2>
+        {user?.displayName}'s <h3>Booking List</h3>
+      </h2>
       <table>
         <thead>
           <tr>

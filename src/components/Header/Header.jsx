@@ -70,12 +70,7 @@ const Header = () => {
                 <ul className="menu d-flex align-items-center gap-5">
                   {nav__links.map((item, index) => (
                     <li className="nav__item" key={index}>
-                      <NavLink
-                        to={item.path}
-                        className={(navClass) =>
-                          navClass.isActive ? "active__link" : ""
-                        }
-                      >
+                      <NavLink to={item.path} className={(navClass) => (navClass.isActive ? "active__link" : "")}>
                         {item.display}
                       </NavLink>
                     </li>
@@ -90,16 +85,10 @@ const Header = () => {
                     </Button>
                   ) : (
                     <>
-                      <Button
-                        className="btn primary__btn"
-                        onClick={() => navigate("/bookingList")}
-                      >
+                      <Button className="btn primary__btn" onClick={() => navigate("/bookingList")}>
                         Your Bookings{" "}
                       </Button>
-                      <Button
-                        className="btn primary__btn"
-                        onClick={handleLogout}
-                      >
+                      <Button className="btn primary__btn" onClick={handleLogout}>
                         Sign Out
                       </Button>
                       {profilePic && (

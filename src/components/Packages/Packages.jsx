@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import TourCards from "../../shared/TourCards";
-import tourData from "../../assets/data/tours";
 import { Col } from "reactstrap";
 import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 
