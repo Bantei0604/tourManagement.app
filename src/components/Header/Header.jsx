@@ -92,6 +92,12 @@ const Header = () => {
                     <>
                       <Button
                         className="btn primary__btn"
+                        onClick={() => navigate("/bookingList")}
+                      >
+                        Your Bookings{" "}
+                      </Button>
+                      <Button
+                        className="btn primary__btn"
                         onClick={handleLogout}
                       >
                         Sign Out

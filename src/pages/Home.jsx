@@ -6,7 +6,7 @@ import heroVideo03 from "../assets/images/hero-video03.mp4";
 import heroVideo from "../assets/images/hero-video.mp4";
 import Subtitle from "../shared/Subtitle";
 import SearchBar from "../shared/SearchBar";
-import LoginForm from "./Login";
+import LoginForm from "./Bookings";
 import Packages from "../components/Packages/Packages";
 
 const Home = () => {

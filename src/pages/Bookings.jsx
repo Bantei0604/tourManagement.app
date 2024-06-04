@@ -12,17 +12,38 @@ import {
   Col,
   Row,
 } from "reactstrap";
+import { auth } from "../firebaseConfig";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import "../styles/home.css";
-const LoginForm = ({ isOpen, toggle }) => {
+
+const BookingForm = ({ isOpen, toggle }) => {
   const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [numberOfPeople, setNumberOfPeople] = useState("");
   const [phone, setPhone] = useState("");
   const [startDate, setStartDate] = useState("");
   const [notes, setNotes] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Booking", { name, number, phone, startDate, notes });
+    const userId = auth.currentUser ? auth.currentUser.uid : null;
+    const db = getFirestore();
+    const bookingsCollection = collection(db, "bookings");
+    const booking = {
+      userId,
+      name,
+      numberOfPeople,
+      phone,
+      startDate,
+      notes,
+      isActive: true,
+    };
+
+    try {
+      const docRef = await addDoc(bookingsCollection, booking);
+      console.log("Booking added with ID: ", docRef.id);
+    } catch (error) {
+      console.log("Error handling booking", error);
+    }
     toggle();
   };
 
@@ -50,12 +71,12 @@ const LoginForm = ({ isOpen, toggle }) => {
             </Col>
             <Col md={6}>
               <FormGroup>
-                <Label for="email">Number of people</Label>
+                <Label for="number">Number of people</Label>
                 <Input
                   type="number"
                   id="number"
-                  value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  value={numberOfPeople}
+                  onChange={(e) => setNumberOfPeople(e.target.value)}
                   required
                 />
               </FormGroup>
@@ -107,4 +128,4 @@ const LoginForm = ({ isOpen, toggle }) => {
   );
 };
 
-export default LoginForm;
+export default BookingForm;
